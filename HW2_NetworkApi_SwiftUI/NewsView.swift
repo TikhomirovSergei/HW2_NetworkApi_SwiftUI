@@ -13,14 +13,14 @@ struct NewsView: View {
     @EnvironmentObject var articlesListVM: ArticlesListViewModel
     
     var body: some View {
-        //Text("")
         List(articlesListVM.articles) { article in
             VStack(alignment: .leading) {
                 Text(article.title ?? "")
-                // Loading
-                if self.articlesListVM.isNewPageLoading && self.articlesListVM.articles.isLastItem(article) {
+                
+                if self.articlesListVM.isNewPageLoading &&
+                    self.articlesListVM.articles.isLastItem(article) {
                     Divider()
-                    Text("Loading...")
+                    ActivityIndicatorView()
                 }
             }.onAppear {
                 self.onItemShowed(article)

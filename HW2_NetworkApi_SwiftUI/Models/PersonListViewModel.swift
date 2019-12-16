@@ -32,4 +32,5 @@ final class PersonListViewModel: ObservableObject {
     }
 }
 
-extension Person: Identifiable { }
+extension Person: Identifiable {
+}

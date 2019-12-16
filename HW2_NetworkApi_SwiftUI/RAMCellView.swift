@@ -10,11 +10,11 @@ import SwiftUI
 
 struct RAMCellView: View {
     
-    @Binding var person: Person
+    var person: Person
     
     var body: some View {
         HStack() {
-            self.showImage(person.status ?? "").resizable().frame(width: 32, height: 32)
+            showImage(person.status ?? "").resizable().frame(width: 32, height: 32)
             VStack(alignment: .leading) {
                 Text("Name: \(person.name ?? "-")")
                 Text("Species: \(person.species ?? "-")")
@@ -25,16 +25,14 @@ struct RAMCellView: View {
 }
 
 extension RAMCellView {
+    
     private func showImage(_ status: String) -> Image {
         var imgName = "alive"
         
         switch status {
-        case "Dead":
-            imgName = "dead"
-            case "unknown":
-                imgName = "unknown"
-        default:
-            imgName = "alive"
+        case "Dead": imgName = "dead"
+        case "unknown": imgName = "unknown"
+        default: imgName = "alive"
         }
         
         return Image(imgName)
