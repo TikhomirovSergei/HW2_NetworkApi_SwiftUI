@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct RootView: View {
     
@@ -24,7 +25,22 @@ struct RootView: View {
                     NewsView().environmentObject(ArticlesListViewModel())
                 } else {
                     RAMView().environmentObject(PersonListViewModel())
-                }
+                }/*
+                ScrollView(.horizontal) {
+                    HStack(spacing: 0) {
+                        ForEach(0..<2) { index in
+                            VStack() {
+                                if index == 0 {
+                                    NewsView().environmentObject(ArticlesListViewModel())
+                                } else {
+                                    RAMView().environmentObject(PersonListViewModel())
+                                }
+                            }
+                            .scaledToFill()
+                            //.frame(width: 350, height: 450, alignment: .center)
+                        }
+                    }
+                }*/
             }
             .navigationBarTitle("Network api")
         }

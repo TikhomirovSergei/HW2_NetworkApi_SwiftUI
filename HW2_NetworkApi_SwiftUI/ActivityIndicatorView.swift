@@ -20,3 +20,13 @@ struct ActivityIndicatorView: UIViewRepresentable {
     }
     
 }
+
+struct MyScrollView: UIViewRepresentable {
+    
+    func makeUIView(context: Context) -> UIScrollView {
+        return UIScrollView()
+    }
+    
+    func updateUIView(_ uiView: UIScrollView, context: Context) {
+    }
+}

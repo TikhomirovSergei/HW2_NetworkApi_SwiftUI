@@ -26,8 +26,12 @@ final class PersonListViewModel: ObservableObject {
         pageIndex += 1
         
         PersonsAPI.callGet(page: pageIndex) { list, error in
-            self.persons.append(contentsOf: list?.results ?? [])
+            
             self.isNewPageLoading = false
+            
+            guard error == nil else { return }
+            
+            self.persons.append(contentsOf: list?.results ?? [])
         }
     }
 }

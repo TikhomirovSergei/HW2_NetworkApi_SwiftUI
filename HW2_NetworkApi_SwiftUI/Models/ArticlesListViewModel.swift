@@ -25,10 +25,13 @@ final class ArticlesListViewModel: ObservableObject {
         isNewPageLoading = true
         pageIndex += 1
         
-        ArticlesAPI.everythingGet(q: "business", from: "2019-12-15", sortBy: "publishedAt", apiKey: "a9b0a70b40c7497fae2f6cff41567103") { list, error in
+        ArticlesAPI.everythingGet(q: "apple", from: "2019-12-15", sortBy: "publishedAt", apiKey: "a9b0a70b40c7497fae2f6cff41567103") { list, error in
+            
+            self.isNewPageLoading = false
+            
+            guard error == nil else { return }
             
             self.articles.append(contentsOf: list?.articles ?? [])
-            self.isNewPageLoading = false
         }
     }
 }
