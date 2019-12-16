@@ -1,0 +1,108 @@
+openapi: 3.0.1
+info:
+  title: RickAndMortyApi
+  description: https://rickandmortyapi.com/
+  version: 1.0.0
+servers:
+- url: https://rickandmortyapi.com/api/character/
+tags:
+  - name: Persons
+    description: New page with persons
+paths:
+  /:
+    get:
+      tags:
+        - persons
+      summary: new page
+      operationId: get
+      parameters:
+      - name: page
+        in: query
+        description: number of page
+        schema:
+          type: integer
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonList'
+        default:
+          description: enexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+components:
+  schemas:
+    ErrorModel:
+      type: object
+      required:
+      - message
+      - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          minimum: 100
+          maximum: 600
+    PersonList:
+      type: object
+      properties:
+        info:
+          $ref: '#/components/schemas/Info'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Person'
+    Info:
+      type: object
+      properties:
+        count:
+          type: integer
+        pages:
+          type: integer
+        next:
+          type: string
+        prev:
+          type: string
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        status:
+          type: string
+        species:
+          type: string
+        type:
+          type: string
+        gender:
+          type: string
+        origin:
+          $ref: '#/components/schemas/OriginLocation'
+        location:
+          $ref: '#/components/schemas/OriginLocation'
+        image:
+          type: string
+        episode:
+          $ref: '#/components/schemas/Episode'
+        url:
+          type: string
+        created:
+          type: string
+    OriginLocation:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+    Episode:
+      type: array
+      items:
+        type: string
